@@ -1,39 +1,33 @@
-package com.company;
+package lessonOne;
 
-import java.util.Scanner;
-import java.lang.Math;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-class Main {
-    //1. Написать программу, которая загадывает случайное число от 0 до 9, и пользователю дается 3 попытки угадать это число. При каждой попытке компьютер должен сообщить больше ли указанное пользователем число чем загаданное, или меньше. После победы или проигрыша выводится запрос – «Повторить игру еще раз? 1 – да / 0 – нет»(1 – повторить, 0 – нет).
+public class Main {
+    public static void main(String[] args){
+        //1.
+        Integer[] intArr = new Integer[2];
 
-    public static void main(String[] args) {
-        GuessTheNumber();
+        intArr[0] = 1;
+        intArr[1] = 2;
+
+        System.out.println(Arrays.deepToString(intArr));
+        swap(intArr, 0, 1);
+        System.out.println(Arrays.deepToString(intArr));
+
+        //2.
+        ArrayList<Integer> arrList = toArrayList(intArr);
+
+    }
+    //1. Написать метод, который меняет два элемента массива местами.(массив может быть любого ссылочного типа);
+    public static void swap(Object[] arr, int value1, int value2) {
+        Object x = arr[value1];
+        arr[value1] = arr[value2];
+        arr[value2] = x;
+    }
+    //2. Написать метод, который преобразует массив в ArrayList;
+    public static <T> ArrayList<T> toArrayList(T[] arr) {
+        return new ArrayList<T>(Arrays.asList(arr));
     }
 
-    public static void GuessTheNumber(){
-        Scanner in = new Scanner(System.in);
-
-        int a, n = (int)(Math.random()*10);
-        System.out.println("Компьютер загадал число от 0 до 9, угадайте это число с 3 попыток.");
-        for (int i = 0; i < 3; i++){
-            System.out.println("Попытка " + (i+1) + ": ");
-            a = in.nextInt();
-            if (a < n) System.out.println("Число больше!");
-            if (a > n) System.out.println("Число меньше!");
-            if (a == n) {System.out.println("Вы угадали!");
-                System.out.println("Повторить игру еще раз? 1 – да / 0 – нет");
-                a = in.nextInt();
-                if (a == 1) GuessTheNumber();
-                else {System.out.println("Спасибо за игру!");
-                    break;
-                }
-            }
-        }
-        System.out.println("Вы не угадали :(");
-        System.out.println("Повторить игру еще раз? 1 – да / 0 – нет");
-        a = in.nextInt();
-        if (a == 1) GuessTheNumber();
-        else {System.out.println("Спасибо за игру!");
-        }
-    }
 }
